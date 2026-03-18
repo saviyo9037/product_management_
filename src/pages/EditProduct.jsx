@@ -21,16 +21,31 @@ function EditProduct() {
         }
   
         getProduct(id).then((res) => {
-            setData(res.data);
+            setData(res);
             setProduct(true);
         }).catch(() => {
             navigate("/"); 
         });
     }, [id, newProducts, navigate]);
 
+
+    // useEffect(()=>{
+    //     const fetchProduct=async () => {
+    //         try {
+    //             const res=await getProduct(id);
+    //             setData(res);
+    //             setProduct(true)
+    //         } catch (error) {
+    //             navigate("/")
+    //         }
+            
+    //     };
+    //     fetchProduct();
+    // },[id,newProducts,navigate])
+
 const handleSubmit = async (form) => {
     const productId = Number(id);
-    const localProduct = newProducts.find(p => p.id === productId);
+    // const localProduct = newProducts.find(p => p.id === productId);
 
    
     updated(productId, form);

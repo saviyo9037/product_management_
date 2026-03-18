@@ -15,7 +15,7 @@ function ProductList() {
   const fetchProduct = async () => {
     try {
       const response = await getProducts();
-      setProducts(response.data.products);
+      setProducts(response.products || response);
     } catch (error) {
       console.log(error);
     } finally {

@@ -11,7 +11,7 @@ import ProductF from './components/ProductF'
 function App() {
   return (
    <BrowserRouter>
-   <div className='flex'>
+   <div className='flex bg-gray-100'>
     
     <Sidebar/>
     <div className=' flex-1'>
