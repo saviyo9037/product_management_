@@ -68,11 +68,17 @@ function ProductList() {
     <div className="p-4">
 
       <div className="flex justify-between mb-4">
-        <h2 className=" font-serif text-2xl">Products List</h2>
+        <h2 className=" font-serif text-2xl">
+          Products List</h2>
 
       
       </div>
-      <div className=" flex justify-between mb-2" >
+
+
+
+      <div className="border-4 border-white p-3
+     rounded-2xl  bg-white shadow-2xl
+    flex justify-between mb-2" >
 
         <button
           onClick={() => navigate("/add")}
@@ -84,7 +90,7 @@ function ProductList() {
 <select name=""
 value={category}
 onChange={(e)=>setCategory(e.target.value)}
-className=" border  mr-5  mb-3"
+className=" border  mr-5  p-1 shadow rounded "
  id="">
   {filterCategory.map((c,index)=>(
     <option value={c} key={index}>{c}</option>
@@ -93,32 +99,38 @@ className=" border  mr-5  mb-3"
       <input
         placeholder="Search"
         onChange={(e) => setSearch(e.target.value)}
-        className="border mb-3"
+        className="border mb-3 p-1  "
       />
 </div>
 
       </div>
 
-      <table className="w-full border">
-        <thead>
-          <tr className=" border bg-amber-400">
-            <th className=" border">Title</th>
-            <th className=" border">Price</th>
-            <th className=" border">Category</th>
-            <th className=" border">Stock</th>
-            <th className=" border">Actions</th>
+
+
+   <div className="bg-white rounded-xl shadow overflow-hidden">
+
+      <table className="w-full">
+
+     <thead className="bg-gradient-to-r from-amber-400 to-orange-500 text-white">
+  
+          <tr>
+            <th className=" ">Title</th>
+            <th className=" ">Price</th>
+            <th className=" ">Category</th>
+            <th className=" ">Stock</th>
+            <th className=" ">Actions</th>
           </tr>
         </thead>
 
-        <tbody className=" ml-1">
+        <tbody className=" ml-1 ">
           {filtered.map((p) => (
-            <tr className="  " key={p.id}>
-              <td className=" border p-1 ">{p.title}</td>
-              <td className=" border p-1">{p.price}</td>
-              <td className=" border p-1 ">{p.category}</td>
-              <td className=" border p-1">{p.stock}</td>
+            <tr className="  border-b  text-lg " key={p.id}>
+              <td className="  p-1 ">{p.title}</td>
+              <td className="  p-1">{p.price}</td>
+              <td className="  p-1 ">{p.category}</td>
+              <td className="  p-1">{p.stock}</td>
 
-              <td className=" border">
+              <td className=" ">
              <div className="  p-2 flex justify-between">
                  <button onClick={() => navigate(`/edit/${p.id}`)} 
                  className=" hover:bg-yellow-500 bg-blue-400 p-1  rounded-xl">
@@ -136,6 +148,7 @@ className=" border  mr-5  mb-3"
         </tbody>
 
       </table>
+</div>
     </div>
   );
 }
