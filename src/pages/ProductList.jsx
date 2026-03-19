@@ -8,6 +8,7 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [category,setCategory]=useState("all")
 
   const { newProducts, removeProduct } = useContext(ProductContext);
   const navigate = useNavigate();
@@ -54,12 +55,15 @@ function ProductList() {
     }
   };
 
-  const filtered = allProducts.filter((p) =>
-    p.title?.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = allProducts.filter((p) =>{
+    const match=p.title?.toLowerCase().includes(search.toLowerCase())
+    const categorymatch=category ==="all" || p.category === category
+    return match && categorymatch
+ } );
 
   if (loading) return <p>Loading...</p>;
-
+  const filterCategory=["all",...new Set(allProducts.map(p=>p.category))]
+  
   return (
     <div className="p-4">
 
@@ -76,12 +80,23 @@ function ProductList() {
         >
           Add Product
         </button>
-
+<div>
+<select name=""
+value={category}
+onChange={(e)=>setCategory(e.target.value)}
+className=" border  mr-5  mb-3"
+ id="">
+  {filterCategory.map((c,index)=>(
+    <option value={c} key={index}>{c}</option>
+  ))}
+ </select>
       <input
         placeholder="Search"
         onChange={(e) => setSearch(e.target.value)}
         className="border mb-3"
       />
+</div>
+
       </div>
 
       <table className="w-full border">
